@@ -1,0 +1,10 @@
+---
+- name: Basic system config
+  hosts: all
+  strategy: debug
+  gather_facts: no
+  vars_files:
+    - vars.yml
+  tasks:
+    - include: tasks/initial.yml
+    - include: tasks/optional.yml

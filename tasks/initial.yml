@@ -1,0 +1,130 @@
+---
+#- name: Apply fastmirror and increase parallel download dnf config
+#  lineinfile: dest=/etc/dnf/dnf.conf state=present regexp={{item.regexp}} line={{item.line}}
+#  with_items:
+#  - { regexp: '^fastestmirror=', line: 'fastestmirror=1' }
+#  - { regexp: '^max_parallel_downloads=', line: 'max_parallel_downloads=20' }
+- name: Update system packages
+  dnf: name=* state=latest
+- name: Give wheel group passwordless sudo powers
+  copy: src=./files/sudo-nopass dest=/etc/sudoers.d/ mode=0440
+- name: Install the fisrt bunch of packages
+  dnf: name={{item}} state=installed
+  with_items:
+  - htop
+  - tilix
+  #- glances
+  - calc
+  - vim-enhanced
+  - git
+  #- ethtool
+  - wget
+  #- socat
+  #- powerline
+  #- tmux-powerline
+  #- vim-powerline
+  - unzip
+  #- icedtea-web
+  #- java-openjdk
+  #- gimp
+  #- wine
+  - youtube-dl
+  - gnome-tweak-tool
+  #- dconf-editor
+  #- inkscape
+  - mosh
+  #- p7zip
+  - jq
+  - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-27.noarch.rpm
+  - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
+  - http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
+  - gedit-plugins
+  - chrome-gnome-shell
+
+- name: Set Gitconfig config
+  copy: src=./files/gitconfig dest=/etc/gitconfig
+- name: Increase bash history
+  copy: src=./files/history.sh dest=/etc/profile.d/history.sh
+#- name: Copy powerline config
+#  copy: src=./files/powerline.sh dest=/etc/profile.d/powerline.sh
+- name: Copy vimrc more config
+  copy: src=./files/vimrc.more dest=/etc/vimrc.more
+- name: Apply vimrc config
+  lineinfile: dest=/etc/vimrc state=present regexp='^source \/etc\/vimrc.more' line='source /etc/vimrc.more'
+- name: Reduce kernel swappiness
+  sysctl: name=vm.swappiness value=5 state=present reload=yes sysctl_file=/etc/sysctl.d/99-sysctl.conf
+- name: Additional yum repos
+  copy: src={{item}} dest=/etc/yum.repos.d/
+  with_items:
+  - files/google-chrome.repo
+  - files/skype-stable.repo
+- name: Additional packages
+  dnf: name={{item}} state=installed
+  with_items:
+  - google-chrome-stable
+  - vlc
+  - flash-plugin
+  - skypeforlinux
+- name: Remove unneeded package
+  dnf: name={{item}} state=absent
+  with_items:
+  - julietaula-montserrat-fonts
+  - thai-scalable-fonts
+  - sil-abyssinica-fonts
+  - lohit-tamil-fonts
+  - lohit-devanagari-fonts
+  - khmeros-base-fonts
+  - tabish-eeyek-fonts
+  - thai-scalable-waree
+  - lohit-gurmukhi
+  - smc-meera
+  - sil-nuosu
+  - sil-mingzat
+  - smc-fonts
+  - vlgothic-fonts
+  - lohit-kannada-fonts
+  - naver-nanum-fonts
+  - lohit-odia-fonts
+  - paratype-pt-sans-fonts
+  - naver-nanum-gothic-fonts
+  - lohit-assamese-fonts
+  - sil-padauk-fonts
+  - lklug-fonts
+  - lohit-bengali-fonts
+  - lohit-gujarati-fonts
+  - lohit-gurmukhi-fonts
+  - lohit-telugu-fonts
+  - sil-mingzat-fonts
+  - sil-nuosu-fonts
+  - thai-scalable-fonts-common
+  - thai-scalable-waree-fonts
+  - google-noto-sans-tai-tham-fonts
+  - google-noto-sans-lisu-fonts
+  - google-noto-sans-mandaic-fonts
+  - google-noto-sans-tagalog-fonts
+  - google-noto-sans-tai-viet-fonts
+  - google-noto-sans-meetei-mayek-fonts
+  - smc-meera-fonts
+  - aajohan-comfortaa-fonts
+  - adobe-source-han-sans-tw-fonts
+  - adobe-source-han-sans-cn-fonts
+  - jomolhari-fonts
+
+- name: Multimedia packages
+  dnf: name={{item}} state=installed
+  with_items:
+  - gstreamer1-libav
+  #- gstreamer-plugins-bad
+  #- gstreamer-plugins-bad-free-extras
+  #- gstreamer-plugins-bad-nonfree
+  #- gstreamer-plugins-ugly
+  #- gstreamer-ffmpeg
+  #- gstreamer1-libav
+  #- gstreamer1-plugins-bad-free-extras
+  #- gstreamer1-plugins-bad-freeworld
+  #- gstreamer1-plugins-base-tools
+  #- gstreamer1-plugins-good-extras
+  #- gstreamer1-plugins-ugly
+  #- gstreamer1-plugins-bad-free
+  #- gstreamer1-plugins-good
+  #- gstreamer1-plugins-base gstreamer1

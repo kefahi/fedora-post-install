@@ -1,0 +1,1 @@
+export HISTSIZE=-1 HISTFILESIZE=-1 HISTTIMEFORMAT="%d/%m/%y %T "

@@ -1,0 +1,20 @@
+
+set nocompatible
+set history=50
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set number
+" set list
+set showmatch
+syntax on
+highlight Comment ctermfg=LightCyan
+set wrap
+
+"colorscheme delek
+set is 
+set ic 
+set ts=2
+set sw=2 
+
