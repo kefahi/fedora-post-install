@@ -4,7 +4,7 @@
   args:
     creates: /usr/share/fonts/arabic_fonts
 
-- name: Add elastic 5.x repo
+- name: Add elastic 6.x repo
   copy: src=files/elastic5.repo dest=/etc/yum.repos.d/
   when: development 
 - name: Development packages
@@ -48,6 +48,7 @@
   - {dest: '/etc/xdg/autostart/tracker-miner-apps.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
   - {dest: '/etc/xdg/autostart/tracker-miner-fs.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
   - {dest: '/etc/xdg/autostart/tracker-miner-rss.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
-  - {dest: '/etc/xdg/autostart/tracker-miner-user-guides.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
   - {dest: '/etc/xdg/autostart/tracker-store.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
   when: disable_tracker
+  #  /etc/xdg/autostart/tracker-extract.desktop     /etc/xdg/autostart/tracker-miner-rss.desktop /etc/xdg/autostart/tracker-miner-apps.desktop  /etc/xdg/autostart/tracker-store.desktop /etc/xdg/autostart/tracker-miner-fs.desktop
+
