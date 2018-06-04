@@ -1,5 +1,7 @@
-#!/bin/bash 
-rpm -qa ansible | grep ansible > /dev/null || sudo dnf install -y python2 python2-dnf libselinux-python ansible 
+#!/bin/bash
+rpm -qa ansible | grep ansible > /dev/null || sudo dnf install -y python2 python2-dnf libselinux-python ansible
+
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 #ansible-playbook  -i 'localhost ansible_become=true,' -c local --ask-sudo-pass -b playbook.yml $@
 sudo ansible-playbook  -i 'localhost ansible_become=true,' -c local -b -v playbook.yml $@
@@ -71,7 +73,7 @@ cd -
 # gsettings set org.gnome.desktop.interface scaling-factor 2
 ## gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 
-# Not working! :( 
+# Not working! :(
 # mkdir ~/.config/gtk-3.0/
 # cp files/gtk.css ~/.config/gtk-3.0/
 
