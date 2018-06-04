@@ -1,6 +1,6 @@
-# Fedora 27 post-installation
+# Fedora 28 post-installation
 
-Ansible playbook that runs post-fedora-27 workstation setup:
+Ansible playbook that runs post-fedora-28 workstation setup:
 
 * Installs ansible so we can run the rest of the script (and re-run) (in run.sh)
 * Enables dnf fast-mirror and increases parallel downloas.
