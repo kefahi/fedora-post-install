@@ -1,6 +1,5 @@
 #!/bin/bash
-rpm -qa ansible | grep ansible > /dev/null || sudo dnf install -y python2 python2-dnf libselinux-python ansible
-
+sudo dnf install -y python2 python2-dnf libselinux-python ansible
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 #ansible-playbook  -i 'localhost ansible_become=true,' -c local --ask-sudo-pass -b playbook.yml $@

@@ -6,8 +6,8 @@
 #  - { regexp: '^max_parallel_downloads=', line: 'max_parallel_downloads=20' }
 - name: Update system packages
   dnf: name=* state=latest
-  #- name: Give wheel group passwordless sudo powers
-  #copy: src=./files/sudo-nopass dest=/etc/sudoers.d/ mode=0440
+- name: Give wheel group passwordless sudo powers
+  copy: src=./files/sudo-nopass dest=/etc/sudoers.d/ mode=0440
 - name: Install the fisrt bunch of packages
   dnf: name={{item}} state=installed
   with_items:
