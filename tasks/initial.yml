@@ -13,6 +13,11 @@
   with_items:
   - htop
   - tilix
+  - gnome-shell-extension-topicons-plus
+  - gnome-shell-extension-suspend-button
+  - gnome-shell-extension-pomodoro
+  - gnome-shell-extension-calc
+  - gnome-shell-extension-gpaste
   #- glances
   - calc
   - vim-enhanced
@@ -43,8 +48,6 @@
   copy: src=./files/gitconfig dest=/etc/gitconfig
 - name: Increase bash history
   copy: src=./files/history.sh dest=/etc/profile.d/history.sh
-#- name: Copy powerline config
-#  copy: src=./files/powerline.sh dest=/etc/profile.d/powerline.sh
 - name: Copy vimrc more config
   copy: src=./files/vimrc.more dest=/etc/vimrc.more
 - name: Apply vimrc config

@@ -30,4 +30,9 @@ Then as a sudo-enabled user run:
 
 `./run.sh`
 
-To enable/disable optional steps edit the flags in vars.yml
+Then run 
+`./user.sh`
+
+Then reboot your computer
+
+Note: To enable/disable optional steps edit the flags in vars.yml

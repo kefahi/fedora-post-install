@@ -4,9 +4,15 @@
   args:
     creates: /usr/share/fonts/arabic_fonts
 
-- name: Add elastic 6.x repo
-  copy: src=files/elastic5.repo dest=/etc/yum.repos.d/
-  when: development 
+
+- name: Dev Repos
+  copy: src={{item}} dest=/etc/yum.repos.d/
+  with_items:
+  - files/vscode.repo
+
+    #- name: Add elastic 6.x repo
+    #  copy: src=files/elastic5.repo dest=/etc/yum.repos.d/
+    #  when: development
 - name: Development packages
   dnf: name={{item}} state=installed
   with_items:
@@ -18,9 +24,9 @@
   - python3-cherrypy
   - redis
   - postgresql
-  - kernel-devel 
-  - kernel-headers 
-  - gcc 
+  - kernel-devel
+  - kernel-headers
+  - gcc
   - "gcc-c++"
   - intltool
   - gtkmm30-devel
@@ -30,7 +36,7 @@
   - intltool
   - rpmdevtools
   - jq
-  - ruby-devel 
+  - ruby-devel
   - make
   - rpm-build
   - rubygem-bundler
@@ -38,11 +44,13 @@
   - mariadb-devel
   - uwsgi
   - java
-  - elasticsearch
+  - code
+  - vagrant
+    #- elasticsearch
   when: development
 
-- name: Disable gnome tracker 
-  lineinfile: dest={{item.dest}} state=present regexp={{item.regexp}} line={{item.line}} 
+- name: Disable gnome tracker
+  lineinfile: dest={{item.dest}} state=present regexp={{item.regexp}} line={{item.line}}
   with_items:
   - {dest: '/etc/xdg/autostart/tracker-extract.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
   - {dest: '/etc/xdg/autostart/tracker-miner-apps.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
