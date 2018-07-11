@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo dnf install -y python2 python2-dnf libselinux-python ansible
-sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm # https://prerelease.keybase.io/keybase_amd64.rpm https://d11yldzmag5yn.cloudfront.net/prod/2.2.128200.0702/zoom_x86_64.rpm
+dnf list --installed python2-libselinux.x86_64 python2-dnf.noarch ansible.noarch &>/dev/null || sudo dnf install -y python2 python2-dnf libselinux-python ansible
+dnf list --installed rpmfusion* &>/dev/null || sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 sudo dnf update -y
 sudo ansible-playbook  -i 'localhost ansible_become=true,' -c local -b -v playbook.yml $@
@@ -9,6 +9,7 @@ exit
 
 
 # sudo dnf  install https://prerelease.keybase.io/keybase_amd64.rpm
+#sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm # https://prerelease.keybase.io/keybase_amd64.rpm https://d11yldzmag5yn.cloudfront.net/prod/2.2.128200.0702/zoom_x86_64.rpm
 # run_keybase
 
 #sudo dnf install fish -y
