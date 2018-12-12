@@ -40,11 +40,11 @@ gnome-shell-extension-tool -e GPaste@gnome-shell-extensions.gnome.org
 
 # Install Pixel saver (removes the title-bar when a window is maximized). Only works with regular title-bars not the custom ones with icons. 
 # https://extensions.gnome.org/extension/723/pixel-saver/
-if [ ! -d ~/.local/share/gnome-shell/extensions/pixel-saver@deadalnix.me ]; then
-	git clone https://github.com/deadalnix/pixel-saver.git /tmp/pixel
-	cp -r /tmp/pixel/pixel-saver@deadalnix.me -t ~/.local/share/gnome-shell/extensions/
-	gnome-shell-extension-tool -e pixel-saver@deadalnix.me
-fi
+#if [ ! -d ~/.local/share/gnome-shell/extensions/pixel-saver@deadalnix.me ]; then
+#	git clone https://github.com/deadalnix/pixel-saver.git /tmp/pixel
+#	cp -r /tmp/pixel/pixel-saver@deadalnix.me -t ~/.local/share/gnome-shell/extensions/
+#	gnome-shell-extension-tool -e pixel-saver@deadalnix.me
+#fi
 
 
 gsettings set org.gnome.shell.extensions.topicons tray-pos 'right'

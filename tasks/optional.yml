@@ -3,6 +3,7 @@
   command: files/arabic-fonts.sh
   args:
     creates: /usr/share/fonts/arabic_fonts
+  when: arabic_fonts
 
 
 - name: Dev Repos

@@ -1,6 +1,8 @@
 #!/bin/bash
-dnf list --installed python3-libselinux.x86_64 python3-dnf.noarch ansible.noarch &>/dev/null || sudo dnf install -y python python3-dnf python3-libselinux.x86_64 ansible
-dnf list --installed rpmfusion* &>/dev/null || sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+# sudo dnf list --installed python3-libselinux python3-dnf ansible &>/dev/null ||
+sudo dnf install -y  python3-dnf python3-libselinux ansible
+# sudo dnf list --installed rpmfusion* &>/dev/null || 
+sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 sudo dnf update -y
 sudo ansible-playbook  -i 'localhost ansible_become=true,' -e 'ansible_python_interpreter=/usr/bin/python3' -c local -b -v playbook.yml $@
