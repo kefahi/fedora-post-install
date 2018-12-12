@@ -14,39 +14,40 @@
     #  copy: src=files/elastic5.repo dest=/etc/yum.repos.d/
     #  when: development
 - name: Development packages
-  dnf: name={{item}} state=installed
-  with_items:
-  - gnome-builder
-  - gedit-plugins
-  - gnome-sudoku
-  - "@Development Tools"
-  - python3-pip
-  - python3-cherrypy
-  - redis
-  - postgresql
-  - kernel-devel
-  - kernel-headers
-  - gcc
-  - "gcc-c++"
-  - intltool
-  - gtkmm30-devel
-  - enchant-devel
-  - libxml2-devel
-  - gconf-editor
-  - intltool
-  - rpmdevtools
-  - jq
-  - ruby-devel
-  - make
-  - rpm-build
-  - rubygem-bundler
-  - ImageMagick-devel
-  - mariadb-devel
-  - uwsgi
-  - java
-  - code
-  - vagrant
-    #- elasticsearch
+  dnf: 
+    state: installed
+    name:
+      - gnome-builder
+      - gedit-plugins
+      - gnome-sudoku
+      - python3-pip
+      - python3-cherrypy
+      - redis
+      - postgresql
+      - kernel-devel
+      - kernel-headers
+      - gcc
+      - intltool
+      - gtkmm30-devel
+      - enchant-devel
+      - libxml2-devel
+      - gconf-editor
+      - intltool
+      - rpmdevtools
+      - jq
+      - ruby-devel
+      - make
+      - rpm-build
+      - rubygem-bundler
+      - ImageMagick-devel
+      - mariadb-devel
+      - uwsgi
+      - java
+      - code
+      - vagrant
+      - "@Development Tools"
+      - "gcc-c++"
+       #- elasticsearch
   when: development
 
 - name: Disable gnome tracker

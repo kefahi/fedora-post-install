@@ -1,11 +1,14 @@
 #!/bin/bash
-dnf list --installed python2-libselinux.x86_64 python2-dnf.noarch ansible.noarch &>/dev/null || sudo dnf install -y python2 python2-dnf libselinux-python ansible
+dnf list --installed python3-libselinux.x86_64 python3-dnf.noarch ansible.noarch &>/dev/null || sudo dnf install -y python python3-dnf python3-libselinux.x86_64 ansible
 dnf list --installed rpmfusion* &>/dev/null || sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 sudo dnf update -y
-sudo ansible-playbook  -i 'localhost ansible_become=true,' -c local -b -v playbook.yml $@
-
+sudo ansible-playbook  -i 'localhost ansible_become=true,' -e 'ansible_python_interpreter=/usr/bin/python3' -c local -b -v playbook.yml $@
 exit
+
+# ansible --version | grep "python version"
+# ansible -i localhost, -e  ansible_python_interpreter=/usr/bin/python3 -c local localhost -m ping
+# dnf list --installed python-libselinux.x86_64 python-dnf.noarch ansible.noarch &>/dev/null || sudo dnf install -y python python-dnf libselinux-python ansible
 
 
 # sudo dnf  install https://prerelease.keybase.io/keybase_amd64.rpm
