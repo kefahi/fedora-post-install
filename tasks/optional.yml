@@ -55,7 +55,6 @@
   lineinfile: dest={{item.dest}} state=present regexp={{item.regexp}} line={{item.line}}
   with_items:
   - {dest: '/etc/xdg/autostart/tracker-extract.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
-  - {dest: '/etc/xdg/autostart/tracker-miner-apps.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
   - {dest: '/etc/xdg/autostart/tracker-miner-fs.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
   - {dest: '/etc/xdg/autostart/tracker-miner-rss.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}
   - {dest: '/etc/xdg/autostart/tracker-store.desktop', regexp: '^X-GNOME-Autostart-enabled=', line: 'X-GNOME-Autostart-enabled=false'}

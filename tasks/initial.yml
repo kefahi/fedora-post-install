@@ -17,7 +17,6 @@
       - gnome-shell-extension-topicons-plus
       - gnome-shell-extension-suspend-button
       - gnome-shell-extension-pomodoro
-      - gnome-shell-extension-calc
       - gnome-shell-extension-gpaste
       - calc
       - vim-enhanced
